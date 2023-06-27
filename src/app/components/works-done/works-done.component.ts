@@ -1,21 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WorkModel } from 'src/app/models/work.model';
-import { WORKS } from 'src/assets/files/mock-works';
+import { WorkListService } from 'src/app/services/work-list.service';
 
 @Component({
   selector: 'app-works-done',
   templateUrl: './works-done.component.html',
   styleUrls: ['./works-done.component.scss']
 })
-export class WorksDoneComponent {
+export class WorksDoneComponent implements OnInit {
   @Input() title: string = 'Trabajos';
 
-  /*work = {
-    "id": 1,
-    "title": "Primer trabajo",
-    "urlImage": "../../../assets/img/work2.png",
-    "description": "Me encanto ese trabajo"
-  }*/
+  /**
+   * variable del tipo de la interfaz agregando una cadena vacia
+   */
+  workList: WorkModel[] = [];
 
-  workList:WorkModel[] = WORKS;
+  constructor (private workListService: WorkListService) { }
+  /**
+   * Ciclo de vida del componente
+   */
+  ngOnInit(): void {
+    this.getWorkList();
+  }
+  
+  /**
+   * funcion que simula el consumo del endpoint de un data provider
+   */
+  getWorkList(): void{
+    this.workList = this.workListService.getWorks();
+  }
 }
