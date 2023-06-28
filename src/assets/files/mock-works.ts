@@ -19,4 +19,4 @@ export const WORKS:WorkModel[] = [
     "urlImage": "../../../assets/img/work3.jpg",
     "description": "Me encanto ese trabajo"
   }
-]
+];
