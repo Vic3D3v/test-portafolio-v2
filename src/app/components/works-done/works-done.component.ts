@@ -27,6 +27,6 @@ export class WorksDoneComponent implements OnInit {
    * funcion que simula el consumo del endpoint de un data provider
    */
   getWorkList(): void{
-    this.workList = this.workListService.getWorks();
+    this.workListService.getWorks().subscribe(workList => this.workList = workList);
   }
 }
